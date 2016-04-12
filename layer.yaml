@@ -1,2 +1,5 @@
 includes:
   - 'layer:beats-base'
+options:
+  basic:
+    use_venv: true
