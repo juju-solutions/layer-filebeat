@@ -1,3 +1,4 @@
+repo: git@github.com:juju-solutions/layer-filebeat.git
 includes:
   - 'layer:beats-base'
 options:
