@@ -1,3 +1,3 @@
-repo: https://github.com/kwmonroe/layer-filebeat.git
+repo: https://github.com/juju-solutions/layer-filebeat.git
 includes:
   - 'layer:beats-base'
