@@ -92,8 +92,12 @@ To monitor additional hosts, simply relate the Filebeat subordinate
 
 ## Contact information
 
-- Charles Butler &lt;charles.butler@canonical.com&gt;
-- Matt Bruzek &lt;matthew.bruzek@canonical.com&gt;
+- Charles Butler <Chuck@dasroot.net>
+- Matthew Bruzek <mbruzek@ubuntu.com>
+- Tim Van Steenburgh <tim.van.steenburgh@canonical.com>
+- George Kraft <george.kraft@canonical.com>
+- Rye Terrell <rye.terrell@canonical.com>
+- Konstantinos Tsakalozos <kos.tsakalozos@canonical.com>
 
 # Need Help?
 

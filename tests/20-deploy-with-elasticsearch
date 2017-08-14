@@ -9,7 +9,7 @@ class TestCharm(unittest.TestCase):
     def setUp(self):
         self.d = amulet.Deployment(series='trusty')
         self.d.add('ubuntu', 'cs:trusty/ubuntu')
-        self.d.add('elasticsearch', 'cs:trusty/elasticsearch-14')
+        self.d.add('elasticsearch', 'cs:trusty/elasticsearch-19')
         self.d.add('filebeat')
         self.d.relate('filebeat:beats-host', 'ubuntu:juju-info')
         self.d.relate('filebeat:elasticsearch', 'elasticsearch:client')

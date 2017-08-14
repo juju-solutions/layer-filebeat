@@ -1,10 +1,16 @@
 name: filebeat
 summary: Filebeat is a lightweight, open source shipper for log file data.
-maintainer: Charles Butler <charles.butler@canonical.com>
+maintainers: 
+  - Tim Van Steenburgh <tim.van.steenburgh@canonical.com>
+  - George Kraft <george.kraft@canonical.com>
+  - Rye Terrell <rye.terrell@canonical.com>
+  - Konstantinos Tsakalozos <kos.tsakalozos@canonical.com>
+  - Charles Butler <Chuck@dasroot.net>
+  - Matthew Bruzek <mbruzek@ubuntu.com>
 description: |
   As the next-generation Logstash Forwarder, Filebeat tails logs and quickly
   sends this information to Logstash for further parsing and enrichment or to
   Elasticsearch for centralized storage and analysis.
 series:
- - xenial
- - trusty
+  - xenial
+  - trusty
