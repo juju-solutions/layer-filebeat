@@ -39,6 +39,11 @@ output:
     worker: 1
     compression_level: 3
     loadbalance: true
+    {% if logstash_ssl_cert and logstash_ssl_key %}
+    ssl.certificate_authorities: ["/etc/ssl/certs/filebeat-logstash.crt"]
+    ssl.certificate: "/etc/ssl/certs/filebeat-logstash.crt"
+    ssl.key: "/etc/ssl/private/filebeat-logstash.key"
+    {% endif %}
 {% endif %}
 {% if elasticsearch %}
   elasticsearch:
