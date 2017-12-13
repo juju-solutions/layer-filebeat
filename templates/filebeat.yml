@@ -19,6 +19,23 @@ filebeat:
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}  
       {% endif %}      
+  {% if kube_logs -%}
+    -
+      paths:
+        - "/var/log/containers/*.log"
+      exclude_files: ["filebeat.*log", "kube.*log"]
+      scan_frequency: 10s
+      harvester_buffer_size: {{ harvester_buffer_size }}
+      max_bytes: {{ max_bytes }}
+      fields_under_root: true
+      symlinks: true
+      json.message_key: log
+      json.keys_under_root: true
+      json.add_error_key: true
+      multiline.pattern: '^\s'
+      multiline.match: after
+      document_type: kube-logs
+  {% endif %}
   registry_file: /var/lib/filebeat/registry
 logging:
   {% if logging_to_syslog %}

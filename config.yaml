@@ -59,3 +59,7 @@ options:
     type: string
     default: ""
     description: "Space seperated list of key:value that the prospector will assign as field to each beat"
+  kube_logs:
+    type: boolean
+    default: false
+    description: "Add prospector to process logs produced by Kubernetes"
