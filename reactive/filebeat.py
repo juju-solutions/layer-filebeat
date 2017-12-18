@@ -14,6 +14,7 @@ from elasticbeats import render_without_context
 from elasticbeats import enable_beat_on_boot
 from elasticbeats import push_beat_index
 
+import base64
 import os
 
 
@@ -48,10 +49,10 @@ def render_filebeat_logstash_ssl_cert():
     logstash_ssl_key = config().get('logstash_ssl_key')
     if logstash_ssl_cert and logstash_ssl_key:
         render(template='{{ data }}',
-               context={'data': logstash_ssl_cert},
+               context={'data': base64.b64decode(logstash_ssl_cert)},
                target=LOGSTASH_SSL_CERT, perms=0o444)
         render(template='{{ data }}',
-               context={'data': logstash_ssl_key},
+               context={'data': base64.b64decode(logstash_ssl_key)},
                target=LOGSTASH_SSL_KEY, perms=0o400)
     else:
         if not logstash_ssl_cert and os.path.exists(LOGSTASH_SSL_CERT):
