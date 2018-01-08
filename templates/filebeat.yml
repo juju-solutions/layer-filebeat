@@ -14,11 +14,11 @@ filebeat:
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
       {% if fields -%}
-      fields: 
+      fields:
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
-        {% endfor %}  
-      {% endif %}      
+        {% endfor %}
+      {% endif %}
     {% if kube_logs -%}
     -
       paths:
@@ -48,12 +48,16 @@ output:
 {% if logstash or logstash_hosts %}
   logstash:
     hosts:
+      {% if logstash -%}
       {% for host in logstash -%}
       - "{{ host }}"
       {% endfor %}
+      {%- endif %}
+      {% if logstash_hosts -%}
       {% for host in logstash_hosts.split(',') -%}
       - "{{ host|trim }}"
       {% endfor %}
+      {%- endif %}
     worker: 1
     compression_level: 3
     loadbalance: true
