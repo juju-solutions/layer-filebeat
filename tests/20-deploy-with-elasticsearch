@@ -29,7 +29,8 @@ class TestCharm(unittest.TestCase):
         self.d.configure('filebeat',
                          {'logpath': '/var/log/*.log /tmp/amulet.log',
                           'harvester_buffer_size': '9999',
-                          'max_bytes': '10485761'})
+                          'max_bytes': '10485761',
+                          'elasticsearch_index': 'filebeat-test-index'})
         self.d.sentry.wait()
         # Changing the config variables just sets a "needs rendering" state.
         # The actual file is updated later so we need to wait a bit.... :(
@@ -38,6 +39,8 @@ class TestCharm(unittest.TestCase):
         self.assertTrue('/tmp/amulet.log' in config)
         self.assertTrue('9999' in config)
         self.assertTrue('10485761' in config)
+        self.assertTrue('filebeat-test-index' in config)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -73,6 +73,7 @@ output:
       {% for host in elasticsearch -%}
       - "{{ host }}"
       {% endfor %}
+    index: "{% elasticsearch_index %}"
     worker: 1
     max_retries: 3
     bulk_max_size: 50
