@@ -13,11 +13,14 @@ filebeat:
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
-      {% if fields -%}
+      {% if fields or principal_unit -%}
       fields:
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}
+      {% endif %}
+      {% if principal_unit %}
+        name: {{ principal_unit }}
       {% endif %}
     {% if kube_logs -%}
     -
