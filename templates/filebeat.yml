@@ -15,7 +15,7 @@ filebeat:
       max_bytes: {{ max_bytes }}
       {% if fields -%}
       fields:
-        {% for fieldvalue in fields -%}
+        {% for fieldvalue in fields.split(' ') -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}
       {% endif %}
