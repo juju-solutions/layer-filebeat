@@ -8,8 +8,9 @@ from charms.templating.jinja2 import render
 
 from charmhelpers.core.hookenv import config, status_set
 from charmhelpers.core.host import restart_on_change, service_stop
+from charmhelpers.core.unitdata import kv
 
-from elasticbeats import render_without_context
+from elasticbeats import render_without_context, principal_unit_cache
 from elasticbeats import enable_beat_on_boot
 from elasticbeats import push_beat_index
 
@@ -33,6 +34,7 @@ def install_filebeat():
     '/etc/filebeat/filebeat.yml': ['filebeat']
     })
 def render_filebeat_template():
+    principal_unit_cache()
     connections = render_without_context('filebeat.yml', '/etc/filebeat/filebeat.yml')
     remove_state('beat.render')
     if connections:
