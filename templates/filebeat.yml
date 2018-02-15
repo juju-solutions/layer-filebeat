@@ -13,8 +13,10 @@ filebeat:
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
-      {% if fields -%}
       fields:
+        juju_model_name: {{ juju_model_name }}
+        juju_model_uuid: {{ juju_model_uuid }}
+        {% if fields -%}
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}
