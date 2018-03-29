@@ -34,6 +34,7 @@ def install_filebeat():
     })
 def render_filebeat_template():
     connections = render_without_context('filebeat.yml', '/etc/filebeat/filebeat.yml')
+    render_filebeat_logstash_ssl_cert()
     remove_state('beat.render')
     if connections:
         status_set('active', 'Filebeat ready.')
