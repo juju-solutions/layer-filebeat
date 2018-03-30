@@ -9,6 +9,7 @@ from charms.templating.jinja2 import render
 
 from charmhelpers.core.hookenv import config, status_set
 from charmhelpers.core.host import restart_on_change, service_stop
+from charmhelpers.core.host import file_hash, service
 
 from elasticbeats import render_without_context
 from elasticbeats import enable_beat_on_boot
@@ -31,17 +32,25 @@ def install_filebeat():
 @when('beat.render')
 @when('apt.installed.filebeat')
 @restart_on_change({
-    '/etc/filebeat/filebeat.yml': ['filebeat'],
     LOGSTASH_SSL_CERT: ['filebeat'],
     LOGSTASH_SSL_KEY: ['filebeat'],
     })
 def render_filebeat_template():
-    connections = render_without_context('filebeat.yml', '/etc/filebeat/filebeat.yml')
+    cfg_path = '/etc/filebeat/filebeat.yml'
+    cfg_original_hash = file_hash(cfg_path)
+    connections = render_without_context('filebeat.yml', cfg_path)
+    cfg_new_hash = file_hash(cfg_path)
+
     # Ensure ssl files match config each time we render a new template
     manage_filebeat_logstash_ssl()
     remove_state('beat.render')
+
     if connections:
+        if cfg_original_hash != cfg_new_hash:
+            service('restart', 'filebeat')
         status_set('active', 'Filebeat ready.')
+    else:
+        service('stop', 'filebeat')
 
 
 def manage_filebeat_logstash_ssl():
