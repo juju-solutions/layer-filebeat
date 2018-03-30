@@ -1,0 +1,704 @@
+{
+  "layers": [
+    "layer:basic", 
+    "layer:apt", 
+    "layer:beats-base", 
+    "filebeat", 
+    "interface:elastic-beats", 
+    "interface:elasticsearch", 
+    "interface:kafka", 
+    "build"
+  ], 
+  "signatures": {
+    ".build.manifest": [
+      "build", 
+      "dynamic", 
+      "unchecked"
+    ], 
+    ".gitignore": [
+      "layer:beats-base", 
+      "static", 
+      "f344b408d936da4844a755a61fd5eba2bcc276ef92dda2fd8a4bbb0a3d77aeb5"
+    ], 
+    "Makefile": [
+      "layer:basic", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "README.md": [
+      "filebeat", 
+      "static", 
+      "7c08b7e1e9a66f9c70fe58a9e7162714adbbfaaeefc19508d497cdbc38e08b96"
+    ], 
+    "bin/charm-env": [
+      "layer:basic", 
+      "static", 
+      "09126ccb5849fa7c821a1fd0940ab794f32b5bde22956d043619596a34c974e4"
+    ], 
+    "bin/layer_option": [
+      "layer:basic", 
+      "static", 
+      "f597e63424560baee58d5cdc1d54a8cfd7d97efc3fe51ec0c067e8b50e2d489c"
+    ], 
+    "config.yaml": [
+      "filebeat", 
+      "dynamic", 
+      "02aa5c925fc1ccd60fc9c16d2761c0480c7957cd46e6f646593719c58241d96f"
+    ], 
+    "copyright": [
+      "filebeat", 
+      "static", 
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
+    ], 
+    "copyright.layer-apt": [
+      "layer:apt", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
+    "copyright.layer-basic": [
+      "layer:basic", 
+      "static", 
+      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+    ], 
+    "deps/interface/elastic-beats/.DS_Store": [
+      "filebeat", 
+      "static", 
+      "17c58553e95488bc81170da5e3fee6814b3fb6792bc28403b9472eb363a1adc7"
+    ], 
+    "deps/interface/elastic-beats/interface.yaml": [
+      "filebeat", 
+      "static", 
+      "6d4f643ac1898cd0c0bf2b4a1c269ab88a1eaa5cc2faddc6bdac855484718015"
+    ], 
+    "deps/interface/elastic-beats/provides.py": [
+      "filebeat", 
+      "static", 
+      "e800c119e7bba3c046bd7b5ee4e74d4075f9cdb7998df2864e9265dc4bf9596c"
+    ], 
+    "deps/interface/elastic-beats/requires.py": [
+      "filebeat", 
+      "static", 
+      "ef32b51f3a4f353bd3c261ef8c54219df1a6262eaa9f76b8fc1efbc0ce076b54"
+    ], 
+    "deps/interface/elasticsearch/README.md": [
+      "filebeat", 
+      "static", 
+      "0a294011dbec80884727538956df3ef25412ed6ff835b210037e01a89c9a94d0"
+    ], 
+    "deps/interface/elasticsearch/interface.yaml": [
+      "filebeat", 
+      "static", 
+      "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
+    ], 
+    "deps/interface/elasticsearch/provides.py": [
+      "filebeat", 
+      "static", 
+      "c2f6090571db85fc25a0ae0ffbf9060cff91b2d678582b75e9235bd69fb33634"
+    ], 
+    "deps/interface/elasticsearch/requires.py": [
+      "filebeat", 
+      "static", 
+      "6a2848123b40633ca11c346b24b2fce227ff12e8c93513ab963b7452719c253d"
+    ], 
+    "deps/interface/kafka/README.md": [
+      "filebeat", 
+      "static", 
+      "930b93885f2aa1323a900905c486105c68d1c6aca3c8087543e5e6773121b32d"
+    ], 
+    "deps/interface/kafka/copyright": [
+      "filebeat", 
+      "static", 
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
+    ], 
+    "deps/interface/kafka/interface.yaml": [
+      "filebeat", 
+      "static", 
+      "67fc490698a61af19b5ed71f29406178d0b53d50b88f81ffa6e1c7bb272da73d"
+    ], 
+    "deps/interface/kafka/provides.py": [
+      "filebeat", 
+      "static", 
+      "3997f91e084ef232b135bc0661bc057816d525cd04659fa0223c7d4e636dcef5"
+    ], 
+    "deps/interface/kafka/requires.py": [
+      "filebeat", 
+      "static", 
+      "be98fe5449cb551233af8c30c0c3cd18217051b09577b961a3f53654c218b427"
+    ], 
+    "deps/layer/apt/.gitignore": [
+      "filebeat", 
+      "static", 
+      "54c2eac10d7d0187b02c271ac7a3767bb3d365d562cfb8c1548efb4e84f7b2d5"
+    ], 
+    "deps/layer/apt/README.md": [
+      "filebeat", 
+      "static", 
+      "f15fa692e2631d913c49fdb90f873da33efa1bcc167fbcea22fb3b48ff7ff627"
+    ], 
+    "deps/layer/apt/config.yaml": [
+      "filebeat", 
+      "static", 
+      "6f53871229977160b32c1451af3d98bb75d24e7c225afb1a0e9fa422ef7b0977"
+    ], 
+    "deps/layer/apt/copyright": [
+      "filebeat", 
+      "static", 
+      "5123b2d0220fefb4424a463216fb41a6dd7cfad49c9799ba7037f1e74a2fd6bc"
+    ], 
+    "deps/layer/apt/layer.yaml": [
+      "filebeat", 
+      "static", 
+      "ed1463b2dbf0d16f8a87ab79ac22ca83f8c832938c344985fe647142352df7fb"
+    ], 
+    "deps/layer/apt/lib/charms/__init__.py": [
+      "filebeat", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "deps/layer/apt/lib/charms/apt.py": [
+      "filebeat", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
+    ], 
+    "deps/layer/apt/reactive/apt.py": [
+      "filebeat", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "deps/layer/basic/.gitignore": [
+      "filebeat", 
+      "static", 
+      "0da5c4dcda27cd6406e5bb81cbf68ddccaf728ac764ec15053a165c1449d87d9"
+    ], 
+    "deps/layer/basic/Makefile": [
+      "filebeat", 
+      "static", 
+      "b7ab3a34e5faf79b96a8632039a0ad0aa87f2a9b5f0ba604e007cafb22190301"
+    ], 
+    "deps/layer/basic/README.md": [
+      "filebeat", 
+      "static", 
+      "92dcf485a5356407aa1c92da864dfc14c14bb6b9b15879fdcf75dd7f7a29c0bf"
+    ], 
+    "deps/layer/basic/bin/charm-env": [
+      "filebeat", 
+      "static", 
+      "09126ccb5849fa7c821a1fd0940ab794f32b5bde22956d043619596a34c974e4"
+    ], 
+    "deps/layer/basic/bin/layer_option": [
+      "filebeat", 
+      "static", 
+      "f597e63424560baee58d5cdc1d54a8cfd7d97efc3fe51ec0c067e8b50e2d489c"
+    ], 
+    "deps/layer/basic/copyright": [
+      "filebeat", 
+      "static", 
+      "f6740d66fd60b60f2533d9fcb53907078d1e20920a0219afce7182e2a1c97629"
+    ], 
+    "deps/layer/basic/hooks/config-changed": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/hook.template": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/install": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/leader-elected": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/leader-settings-changed": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/start": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/stop": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/update-status": [
+      "filebeat", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "deps/layer/basic/hooks/upgrade-charm": [
+      "filebeat", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "deps/layer/basic/layer.yaml": [
+      "filebeat", 
+      "static", 
+      "27dbe56ba4880b1b39370e08c35dfcd26cc6afa48795f9f28c4dc78946ef0584"
+    ], 
+    "deps/layer/basic/lib/charms/layer/__init__.py": [
+      "filebeat", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "deps/layer/basic/lib/charms/layer/basic.py": [
+      "filebeat", 
+      "static", 
+      "69784886fe03c59ff47241b71d7b698e5760c30f0804710a1f62a1403005d0a5"
+    ], 
+    "deps/layer/basic/lib/charms/layer/execd.py": [
+      "filebeat", 
+      "static", 
+      "fda8bd491032db1db8ddaf4e99e7cc878c6fb5432efe1f91cadb5b34765d076d"
+    ], 
+    "deps/layer/basic/metadata.yaml": [
+      "filebeat", 
+      "static", 
+      "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
+    ], 
+    "deps/layer/basic/reactive/__init__.py": [
+      "filebeat", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "deps/layer/basic/requirements.txt": [
+      "filebeat", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "deps/layer/basic/tox.ini": [
+      "filebeat", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "deps/layer/basic/wheelhouse.txt": [
+      "filebeat", 
+      "static", 
+      "cc214ffedbdbaf3784165f83848c37ae0a90a0b8f1561efa710de9a8435d43d3"
+    ], 
+    "deps/layer/beats-base/.gitignore": [
+      "filebeat", 
+      "static", 
+      "f344b408d936da4844a755a61fd5eba2bcc276ef92dda2fd8a4bbb0a3d77aeb5"
+    ], 
+    "deps/layer/beats-base/README.md": [
+      "filebeat", 
+      "static", 
+      "5e26cc68c928622ba0f7325e8dc4938605604e5b9860dcb0240aad801eb789e0"
+    ], 
+    "deps/layer/beats-base/config.yaml": [
+      "filebeat", 
+      "static", 
+      "2332d8a53c1de7cbb4391a5d0d138fd8c0cfaca31a9876e4a0a31d43a891cbdc"
+    ], 
+    "deps/layer/beats-base/hooks/beats-host-relation-joined": [
+      "filebeat", 
+      "static", 
+      "4813ddee930ff6a6e4bfe663f1d63f2e39681ce0d09846c4738fd9d2361a6da9"
+    ], 
+    "deps/layer/beats-base/icon.svg": [
+      "filebeat", 
+      "static", 
+      "085f367baa9c4ec724561b6e0d5d167c14c4295d6311b719a57729a17ac025c7"
+    ], 
+    "deps/layer/beats-base/layer.yaml": [
+      "filebeat", 
+      "static", 
+      "be0a92d4b9955a762637e9d05972c6fdca8ab0ef4cf552e790cbf74b54f0796e"
+    ], 
+    "deps/layer/beats-base/lib/elasticbeats.py": [
+      "filebeat", 
+      "static", 
+      "7b4260319bf344a35f96494bd4aeaee5cc5e526a99d3fd46e1d2a5b42f4f6585"
+    ], 
+    "deps/layer/beats-base/metadata.yaml": [
+      "filebeat", 
+      "static", 
+      "cb4808a71cefe2bb75ed2c48a6ceeb92a5700f9409693f6ca166671f992b6511"
+    ], 
+    "deps/layer/beats-base/reactive/beats_base.py": [
+      "filebeat", 
+      "static", 
+      "fc28a4e5f80a744b852aa28b2e1afa39c66d17c1ae3def16e1d25bc053d249ae"
+    ], 
+    "deps/layer/beats-base/wheelhouse.txt": [
+      "filebeat", 
+      "static", 
+      "ebe822660052b33e8437d6607bffdb55c465605da868d7639ebca3f53041ea3d"
+    ], 
+    "hooks/beats-host-relation-joined": [
+      "layer:beats-base", 
+      "static", 
+      "4813ddee930ff6a6e4bfe663f1d63f2e39681ce0d09846c4738fd9d2361a6da9"
+    ], 
+    "hooks/config-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/elasticsearch-relation-broken": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/elasticsearch-relation-changed": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/elasticsearch-relation-departed": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/elasticsearch-relation-joined": [
+      "interface:elasticsearch", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/hook.template": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/install": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/kafka-relation-broken": [
+      "interface:kafka", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/kafka-relation-changed": [
+      "interface:kafka", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/kafka-relation-departed": [
+      "interface:kafka", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/kafka-relation-joined": [
+      "interface:kafka", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-elected": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/leader-settings-changed": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/logstash-relation-broken": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/logstash-relation-changed": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/logstash-relation-departed": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/logstash-relation-joined": [
+      "interface:elastic-beats", 
+      "dynamic", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/relations/elastic-beats/.DS_Store": [
+      "interface:elastic-beats", 
+      "static", 
+      "17c58553e95488bc81170da5e3fee6814b3fb6792bc28403b9472eb363a1adc7"
+    ], 
+    "hooks/relations/elastic-beats/__init__.py": [
+      "interface:elastic-beats", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/elastic-beats/interface.yaml": [
+      "interface:elastic-beats", 
+      "static", 
+      "6d4f643ac1898cd0c0bf2b4a1c269ab88a1eaa5cc2faddc6bdac855484718015"
+    ], 
+    "hooks/relations/elastic-beats/provides.py": [
+      "interface:elastic-beats", 
+      "static", 
+      "e800c119e7bba3c046bd7b5ee4e74d4075f9cdb7998df2864e9265dc4bf9596c"
+    ], 
+    "hooks/relations/elastic-beats/requires.py": [
+      "interface:elastic-beats", 
+      "static", 
+      "ef32b51f3a4f353bd3c261ef8c54219df1a6262eaa9f76b8fc1efbc0ce076b54"
+    ], 
+    "hooks/relations/elasticsearch/README.md": [
+      "interface:elasticsearch", 
+      "static", 
+      "0a294011dbec80884727538956df3ef25412ed6ff835b210037e01a89c9a94d0"
+    ], 
+    "hooks/relations/elasticsearch/__init__.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/elasticsearch/interface.yaml": [
+      "interface:elasticsearch", 
+      "static", 
+      "63c130a3ddb7b4d576de07ae2c04a3f9c1a0bd4721019a7cbbbea21f937a1f76"
+    ], 
+    "hooks/relations/elasticsearch/provides.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "c2f6090571db85fc25a0ae0ffbf9060cff91b2d678582b75e9235bd69fb33634"
+    ], 
+    "hooks/relations/elasticsearch/requires.py": [
+      "interface:elasticsearch", 
+      "static", 
+      "6a2848123b40633ca11c346b24b2fce227ff12e8c93513ab963b7452719c253d"
+    ], 
+    "hooks/relations/kafka/README.md": [
+      "interface:kafka", 
+      "static", 
+      "930b93885f2aa1323a900905c486105c68d1c6aca3c8087543e5e6773121b32d"
+    ], 
+    "hooks/relations/kafka/__init__.py": [
+      "interface:kafka", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "hooks/relations/kafka/copyright": [
+      "interface:kafka", 
+      "static", 
+      "188b8b4aa4477e8d2a0b4c290c451326456a0ddf58e1f314c3f5bf151ddbd8a8"
+    ], 
+    "hooks/relations/kafka/interface.yaml": [
+      "interface:kafka", 
+      "static", 
+      "67fc490698a61af19b5ed71f29406178d0b53d50b88f81ffa6e1c7bb272da73d"
+    ], 
+    "hooks/relations/kafka/provides.py": [
+      "interface:kafka", 
+      "static", 
+      "3997f91e084ef232b135bc0661bc057816d525cd04659fa0223c7d4e636dcef5"
+    ], 
+    "hooks/relations/kafka/requires.py": [
+      "interface:kafka", 
+      "static", 
+      "be98fe5449cb551233af8c30c0c3cd18217051b09577b961a3f53654c218b427"
+    ], 
+    "hooks/start": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/stop": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/update-status": [
+      "layer:basic", 
+      "static", 
+      "f976e7ff3e347d44dac22626507f2a88042ba913aeebca7ffdcd5f6179b83683"
+    ], 
+    "hooks/upgrade-charm": [
+      "layer:basic", 
+      "static", 
+      "8fb6559bf4d4b7cdf1b857564c1d7265df98e863a4746fcbae092f141e59d97e"
+    ], 
+    "icon.svg": [
+      "filebeat", 
+      "static", 
+      "8a6c3420ff6ef743d9efdcc8178963bfe20fd6f89bd3a05d4b2057ac6255be0b"
+    ], 
+    "layer.yaml": [
+      "filebeat", 
+      "dynamic", 
+      "b2795d8cbbd742f7a66c6c0da2c07babc807b32ceee69fe74f3276edf704d73b"
+    ], 
+    "lib/charms/__init__.py": [
+      "layer:apt", 
+      "static", 
+      "4032724b98ed267185b12b8ec78dd9bcb0423ab1c89a6f0dad99397fd51159d9"
+    ], 
+    "lib/charms/apt.py": [
+      "layer:apt", 
+      "static", 
+      "f074d981409c3860547f8c45cde9c3ce4a80985a5ee94755981cd10117dc76e4"
+    ], 
+    "lib/charms/layer/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "71a8b901f7e64a6b1b61959fc25819bafc9c9905e37a918615b9f949295095a4"
+    ], 
+    "lib/charms/layer/basic.py": [
+      "layer:basic", 
+      "static", 
+      "69784886fe03c59ff47241b71d7b698e5760c30f0804710a1f62a1403005d0a5"
+    ], 
+    "lib/charms/layer/execd.py": [
+      "layer:basic", 
+      "static", 
+      "fda8bd491032db1db8ddaf4e99e7cc878c6fb5432efe1f91cadb5b34765d076d"
+    ], 
+    "lib/elasticbeats.py": [
+      "layer:beats-base", 
+      "static", 
+      "7b4260319bf344a35f96494bd4aeaee5cc5e526a99d3fd46e1d2a5b42f4f6585"
+    ], 
+    "metadata.yaml": [
+      "filebeat", 
+      "dynamic", 
+      "b288525a193a5a0f42c912d994f06ebafc1e96416c3cfd1613f82fb04a416553"
+    ], 
+    "reactive/__init__.py": [
+      "layer:basic", 
+      "static", 
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    ], 
+    "reactive/apt.py": [
+      "layer:apt", 
+      "static", 
+      "6dad3fc2032bc4367b3669def96a45609222a745fd28763992725e377d7c974c"
+    ], 
+    "reactive/beats_base.py": [
+      "layer:beats-base", 
+      "static", 
+      "fc28a4e5f80a744b852aa28b2e1afa39c66d17c1ae3def16e1d25bc053d249ae"
+    ], 
+    "reactive/filebeat.py": [
+      "filebeat", 
+      "static", 
+      "cb3dcfbaeaa51087e7b92b1c887ecd0cd0d35f23da17d5639d5e87d4940c03e0"
+    ], 
+    "requirements.txt": [
+      "layer:basic", 
+      "static", 
+      "0f1c70d27e26005a96d66ad54482877ae20f7737693c833e29dd72bd6ac24892"
+    ], 
+    "templates/filebeat.yml": [
+      "filebeat", 
+      "static", 
+      "382dab8360ec156b6ad7419eafebdf248098982b0b5181a6c581f8e769bf8943"
+    ], 
+    "tests/10-deploy-with-logstash": [
+      "filebeat", 
+      "static", 
+      "c59249498fead0424dcd32c137438a2c8c474951c93c99ecbfdcd2007a6f73e3"
+    ], 
+    "tests/20-deploy-with-elasticsearch": [
+      "filebeat", 
+      "static", 
+      "9cdc71167cc58aa1d9ee016dca39581f54e1df948852ce0ea6dcc5b831a25f6d"
+    ], 
+    "tests/30-deploy-with-logstash-hosts": [
+      "filebeat", 
+      "static", 
+      "2d68b3f9871b07fa7ab7aa7b1d7764618e3abdfa8d241ecaccd9695bc5c0f36c"
+    ], 
+    "tests/40-deploy-with-kafka": [
+      "filebeat", 
+      "static", 
+      "ad837b20037be705fff8df8185eebbdfb96b0eb3190e2bf2b653825bf15bb464"
+    ], 
+    "tests/50-deploy-with-kafka-hosts": [
+      "filebeat", 
+      "static", 
+      "f85b4bf0914030bbda20308229e169be550af8335d1ce71ffd56f81a16e8b729"
+    ], 
+    "tests/tests.yaml": [
+      "filebeat", 
+      "static", 
+      "99f5125dcc0f877fca31e1f655573a476206a05cd61cfde2691385f2671d069f"
+    ], 
+    "tox.ini": [
+      "layer:basic", 
+      "static", 
+      "00b57a776ac313e92a52daa05d1fdb6056c21b3105b643d32610fd937664321b"
+    ], 
+    "wheelhouse/Jinja2-2.10.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "f84be1bb0040caca4cea721fcbbbbd61f9be9464ca236387158b0feea01914a4"
+    ], 
+    "wheelhouse/MarkupSafe-1.0.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "a6be69091dac236ea9c6bc7d012beab42010fa914c459791d627dad4910eb665"
+    ], 
+    "wheelhouse/PyYAML-3.12.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab"
+    ], 
+    "wheelhouse/Tempita-0.5.2.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "cacecf0baa674d356641f1d406b8bff1d756d739c46b869a54de515d08e6fc9c"
+    ], 
+    "wheelhouse/charmhelpers-0.18.7.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "7f910205969d8fa4d4c1b06d8c052b5787c17be6db9ed50cb34e771be1fd8f36"
+    ], 
+    "wheelhouse/charms.reactive-0.6.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "cf9dc0b522f6a668a281f9b30dee90979b1ccb4a53552c0406aa7319677543de"
+    ], 
+    "wheelhouse/charms.templating.jinja2-1.0.2.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "8193c6a1d40bdb66fe272c359b4e4780501c658acfaf2b1118c4230927815fe2"
+    ], 
+    "wheelhouse/netaddr-0.7.19.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "38aeec7cdd035081d3a4c306394b19d677623bf76fa0913f6695127c7753aefd"
+    ], 
+    "wheelhouse/pip-8.1.2.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "4d24b03ffa67638a3fa931c09fd9e0273ffa904e95ebebe7d4b1a54c93d7b732"
+    ], 
+    "wheelhouse/pyaml-17.12.1.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "66623c52f34d83a2c0fc963e08e8b9d0c13d88404e3b43b1852ef71eda19afa3"
+    ], 
+    "wheelhouse/setuptools-39.0.1.zip": [
+      "layer:basic", 
+      "dynamic", 
+      "bec7badf0f60e7fc8153fac47836edc41b74e5d541d7692e614e635720d6a7c7"
+    ], 
+    "wheelhouse/setuptools_scm-1.17.0.tar.gz": [
+      "layer:basic", 
+      "dynamic", 
+      "70a4cf5584e966ae92f54a764e6437af992ba42ac4bca7eb37cc5d02b98ec40a"
+    ], 
+    "wheelhouse/six-1.11.0.tar.gz": [
+      "filebeat", 
+      "dynamic", 
+      "70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+    ]
+  }
+}

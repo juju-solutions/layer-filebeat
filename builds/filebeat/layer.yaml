@@ -1,0 +1,20 @@
+"options":
+  "basic":
+    "use_venv": !!bool "true"
+    "packages": []
+    "include_system_packages": !!bool "true"
+  "filebeat": {}
+  "beats-base": {}
+  "apt":
+    "version_package": ""
+    "packages": []
+    "full_version": !!bool "false"
+"includes":
+- "layer:basic"
+- "layer:apt"
+- "interface:elastic-beats"
+- "interface:elasticsearch"
+- "interface:kafka"
+- "layer:beats-base"
+"repo": "https://github.com/juju-solutions/layer-filebeat.git"
+"is": "filebeat"
