@@ -51,6 +51,7 @@ def render_filebeat_template():
         status_set('active', 'Filebeat ready.')
     else:
         service('stop', 'filebeat')
+        status_set('waiting', 'Waiting for connections.')
 
 
 def manage_filebeat_logstash_ssl():
