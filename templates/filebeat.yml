@@ -26,7 +26,7 @@ filebeat:
     -
       paths:
         - /var/log/containers/*.log
-      exclude_files: ["filebeat.*log", "kube.*log"]
+      exclude_files: ["filebeat.*log"]
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
