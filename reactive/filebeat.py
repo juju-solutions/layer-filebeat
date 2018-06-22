@@ -112,8 +112,13 @@ def push_filebeat_index(elasticsearch):
     hosts = elasticsearch.list_unit_data()
     for host in hosts:
         host_string = "{}:{}".format(host['host'], host['port'])
-    push_beat_index(host_string, 'filebeat')
-    set_state('filebeat.index.pushed')
+    if push_beat_index(elasticsearch=host_string,
+                       service='filebeat', fatal=False):
+        set_state('filebeat.index.pushed')
+        status.active('Filebeat ready.')
+    else:
+        # curl'ing ES may fail if ES isnt quite ready; keep trying
+        status.waiting('Attempting to push filebeat index to Elasticsearch.')
 
 
 @when('apt.installed.filebeat')
