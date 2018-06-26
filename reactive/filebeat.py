@@ -23,6 +23,7 @@ from elasticbeats import (
 
 import base64
 import os
+import time
 
 
 FILEBEAT_CONFIG = '/etc/filebeat/filebeat.yml'
@@ -109,16 +110,30 @@ def enlist_filebeat():
 @when('elasticsearch.available')
 @when_not('filebeat.index.pushed')
 def push_filebeat_index(elasticsearch):
+    """Create the Filebeat index in Elasticsearch.
+
+    Once elasticsearch is available, make 5 attempts to create a filebeat
+    index. Set appropriate charm status so the operator knows when ES is
+    configured to accept data.
+    """
     hosts = elasticsearch.list_unit_data()
     for host in hosts:
         host_string = "{}:{}".format(host['host'], host['port'])
-    if push_beat_index(elasticsearch=host_string,
-                       service='filebeat', fatal=False):
-        set_state('filebeat.index.pushed')
-        status.active('Filebeat ready.')
+
+    max_attempts = 5
+    for i in range(1, max_attempts):
+        if push_beat_index(elasticsearch=host_string,
+                           service='filebeat', fatal=False):
+            set_state('filebeat.index.pushed')
+            status.active('Filebeat ready.')
+            break
+        else:
+            msg = "Attempt {} to push filebeat index failed (retrying)".format(i)
+            status.waiting(msg)
+            time.sleep(i * 30)  # back off 30s for each attempt
     else:
-        # curl'ing ES may fail if ES isnt quite ready; keep trying
-        status.waiting('Attempting to push filebeat index to Elasticsearch.')
+        msg = "Failed to push filebeat index to http://{}".format(host_string)
+        status.blocked(msg)
 
 
 @when('apt.installed.filebeat')
