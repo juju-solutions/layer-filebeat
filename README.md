@@ -1,16 +1,16 @@
-# Filebeat
+# Overview
 
-A lightweight, open source shipper for log file data. As the
+Filebeat is a lightweight, open source shipper for log file data. As the
 next-generation Logstash Forwarder, Filebeat tails logs and quickly sends this
 information to Logstash for further parsing and enrichment or to Elasticsearch
 for centralized storage and analysis.
 
 
-## Usage
+# Usage
 
 Filebeat can be added to any principal charm thanks to the wonders of being
-a subordinate charm. The following usage example will deploy an ubuntu
-log source along with the elk stack so we can visualize our log data.
+a subordinate charm. The following example will deploy an ubuntu log source
+along with the elk stack so we can visualize our log data.
 
     juju deploy ~elasticsearch-charmers/bundle/elk-stack
     juju deploy xenial/filebeat
@@ -18,8 +18,7 @@ log source along with the elk stack so we can visualize our log data.
     juju add-relation filebeat:beats-host ubuntu
     juju add-relation filebeat logstash
 
-
-### Deploying the minimal Beats formation
+## Deploying the minimal Beats formation
 
 If you do not need log buffering and alternate transforms on data that is
 being shipped to ElasticSearch, you can simply deploy the 'beats-core' bundle
@@ -31,7 +30,7 @@ subordinate applications.
     juju add-relation filebeat:beats-host ubuntu
     juju add-relation topbeat:beats-host ubuntu
 
-### Changing what is shipped
+## Changing what is shipped
 
 By default, the Filebeat charm is setup to ship everything in:
 
@@ -41,8 +40,7 @@ By default, the Filebeat charm is setup to ship everything in:
 
 If you'd rather target specific log files:
 
-    juju config filebeat logpath /var/log/mylog.log
-
+    juju config filebeat logpath=/var/log/mylog.log
 
 ## Testing the deployment
 
@@ -65,32 +63,40 @@ url and view the streamed log data from the Ubuntu host.
 Navigate to http://&lt;kibana-ip&gt;/ in a browser and begin creating your
 dashboard visualizations.
 
+## Upgrading filebeat
 
-## Scale Out Usage
+Upgrades are handled at both the charm and apt repository levels. Use
+`upgrade-charm` to get the latest charm code on all filebeat units:
 
-This bundle was designed to scale out. To increase the amount of log storage and
-indexers, you can add-units to elasticsearch.
+    juju upgrade-charm filebeat
 
-    juju add-unit elasticsearch
+Apt repositories are scanned any time the `install_sources` config changes. If
+a new version of filebeat is found in the configured repository, `juju status`
+will instruct operators to run the `reinstall` action. This action must be
+run on each filebeat unit:
 
-You can also increase in multiples, for example: To increase the number of
-Logstash parser/buffer/shipping units:
+    juju run-action --wait filebeat/0 reinstall
 
-    juju add-unit -n 2 logstash
+The `reinstall` action will stop the filebeat service, purge the apt package,
+and reinstall the latest version available from the configured repository.
 
-To monitor additional hosts, simply relate the Filebeat subordinate:
+
+# Scale Out Usage
+
+As a subordinate charm, filebeat will scale when additional principal units are
+added. For example, adding `ubuntu` units that are related to `filebeat` will
+automatically install and configure `filebeat` for the new unit(s).
+
+    juju add-unit ubuntu
+
+To monitor additional applications, simply relate the filebeat subordinate:
 
     juju add-relation filebeat:beats-host my-charm
 
 
-## Contact information
+# Contact Information
 
-- Charles Butler <Chuck@dasroot.net>
-- Matthew Bruzek <mbruzek@ubuntu.com>
-- Tim Van Steenburgh <tim.van.steenburgh@canonical.com>
-- George Kraft <george.kraft@canonical.com>
-- Rye Terrell <rye.terrell@canonical.com>
-- Konstantinos Tsakalozos <kos.tsakalozos@canonical.com>
+- <elasticsearch-charmers@lists.launchpad.net>
 
 
 # Need Help?
