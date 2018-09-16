@@ -7,9 +7,9 @@ import time
 
 class TestCharm(unittest.TestCase):
     def setUp(self):
-        self.d = amulet.Deployment(series='trusty')
-        self.d.add('ubuntu', 'cs:trusty/ubuntu')
-        self.d.add('elasticsearch', 'cs:trusty/elasticsearch-19')
+        self.d = amulet.Deployment(series='xenial')
+        self.d.add('ubuntu', 'cs:xenial/ubuntu')
+        self.d.add('elasticsearch', 'cs:xenial/elasticsearch')
         self.d.add('filebeat')
         self.d.relate('filebeat:beats-host', 'ubuntu:juju-info')
         self.d.relate('filebeat:elasticsearch', 'elasticsearch:client')
@@ -38,6 +38,7 @@ class TestCharm(unittest.TestCase):
         self.assertTrue('/tmp/amulet.log' in config)
         self.assertTrue('9999' in config)
         self.assertTrue('10485761' in config)
+
 
 if __name__ == "__main__":
     unittest.main()

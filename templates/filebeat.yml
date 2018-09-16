@@ -13,32 +13,68 @@ filebeat:
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
-      {% if fields -%}
-      fields: 
+      fields:
+        juju_model_name: {{ juju_model_name }}
+        juju_model_uuid: {{ juju_model_uuid }}
+        juju_principal_unit: {{ juju_principal_unit }}
+        {% if fields -%}
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
-        {% endfor %}  
-      {% endif %}      
+        {% endfor %}
+        {%- endif %}
+    {% if kube_logs -%}
+    -
+      paths:
+        - /var/log/containers/*.log
+      exclude_files: ["filebeat.*log"]
+      scan_frequency: 10s
+      harvester_buffer_size: {{ harvester_buffer_size }}
+      max_bytes: {{ max_bytes }}
+      fields_under_root: true
+      symlinks: true
+      # NB: disable json decoding; setting any of these would result in the
+      # top 'message' key being removed, thereby breaking things like the
+      # graylog beats input. Consumers will need to do their own json decoding
+      # for now.
+      # - https://github.com/juju-solutions/layer-filebeat/issues/44
+      #json.message_key: log
+      #json.keys_under_root: true
+      #json.add_error_key: true
+      multiline.pattern: '^\s'
+      multiline.match: after
+      fields:
+        type: kube-logs
+    {% endif %}
   registry_file: /var/lib/filebeat/registry
+
 logging:
-  {% if logging_to_syslog %}
+  {% if logging_to_syslog -%}
   to_syslog: true
-  {% endif %}
+  {%- endif %}
   metrics.enabled: false
 
 output:
 {% if logstash or logstash_hosts %}
   logstash:
     hosts:
+      {% if logstash -%}
       {% for host in logstash -%}
       - "{{ host }}"
       {% endfor %}
+      {%- endif %}
+      {% if logstash_hosts -%}
       {% for host in logstash_hosts.split(',') -%}
       - "{{ host|trim }}"
       {% endfor %}
+      {%- endif %}
     worker: 1
     compression_level: 3
     loadbalance: true
+    {% if logstash_ssl_cert and logstash_ssl_key -%}
+    ssl.certificate_authorities: ["/etc/ssl/certs/filebeat-logstash.crt"]
+    ssl.certificate: "/etc/ssl/certs/filebeat-logstash.crt"
+    ssl.key: "/etc/ssl/private/filebeat-logstash.key"
+    {%- endif %}
 {% endif %}
 {% if elasticsearch %}
   elasticsearch:
@@ -51,7 +87,7 @@ output:
     bulk_max_size: 50
     timeout: 30
 {% endif %}
-{% if kafka or kafka_hosts%}
+{% if kafka or kafka_hosts %}
   kafka:
     hosts:
       {% if kafka %}
@@ -69,7 +105,10 @@ output:
     topics:
 {{kafka_topics|indent(width=6, indentfirst=true)}}
     {% endif %}
-{% endif -%}
-{% if principal_unit %}
-name: {{ principal_unit }}
+    {%- if kafka_version %}
+    version: "{{kafka_version}}"
+    {%- endif %}
 {% endif %}
+{% if juju_principal_unit -%}
+name: {{ juju_principal_unit }}
+{%- endif %}

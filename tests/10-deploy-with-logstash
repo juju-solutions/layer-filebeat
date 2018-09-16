@@ -6,9 +6,9 @@ import unittest
 
 class TestCharm(unittest.TestCase):
     def setUp(self):
-        self.d = amulet.Deployment(series='trusty')
-        self.d.add('ubuntu', 'cs:trusty/ubuntu')
-        self.d.add('logstash', 'cs:~containers/trusty/logstash-5')
+        self.d = amulet.Deployment(series='xenial')
+        self.d.add('ubuntu', 'cs:xenial/ubuntu')
+        self.d.add('logstash', 'cs:xenial/logstash')
         self.d.add('filebeat')
         self.d.relate('filebeat:beats-host', 'ubuntu:juju-info')
         self.d.relate('filebeat:logstash', 'logstash:beat')
@@ -23,6 +23,7 @@ class TestCharm(unittest.TestCase):
         stash_address = self.logstash.relation('beat', 'filebeat:logstash')['private-address']  # noqa
         config = self.filebeat.file_contents('/etc/filebeat/filebeat.yml')
         self.assertTrue(stash_address in config)
+
 
 if __name__ == "__main__":
     unittest.main()
