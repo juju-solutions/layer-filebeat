@@ -15,22 +15,6 @@ options:
     type: boolean
     description: "Send filebeat logs to syslog https://www.elastic.co/guide/en/beats/filebeat/master/configuration-logging.html#_literal_to_syslog_literal"
     default: true
-  logstash_hosts:
-    type: string
-    default: ""
-    description: "A comma separated list of logstash output hosts in addition to those from relations."
-  kafka_hosts:
-    type: string
-    default: ""
-    description: "A comma separated list of kafka output hosts in addition to those from relations."
-  kafka_topic:
-    type: string
-    default: "%{[type]}"
-    description: "Topic name. Format strings are allowed. https://www.elastic.co/guide/en/beats/filebeat/master/kafka-output.html#_literal_topic_literal"
-  kafka_topics:
-    type: string
-    default: ""
-    description: "Expert setting topics filter. https://www.elastic.co/guide/en/beats/filebeat/master/kafka-output.html#_literal_topics_literal"
   harvester_buffer_size:
     type: int
     default: 16384
