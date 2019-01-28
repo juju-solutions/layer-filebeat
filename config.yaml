@@ -1,7 +1,7 @@
 options:
   install_sources:
     type: string
-    default: deb https://artifacts.elastic.co/packages/5.x/apt stable main
+    default: deb https://artifacts.elastic.co/packages/6.x/apt stable main
     description: apt repository to fetch beats from
   install_keys:
     type: string
