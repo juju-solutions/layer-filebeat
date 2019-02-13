@@ -55,8 +55,12 @@ def blocked_until_reinstall():
     LOGSTASH_SSL_KEY: ['filebeat'],
     })
 def render_filebeat_template():
+    version = charms.apt.get_package_version('filebeat')[0]
     cfg_original_hash = file_hash(FILEBEAT_CONFIG)
-    connections = render_without_context('filebeat.yml', FILEBEAT_CONFIG)
+    connections = render_without_context(
+        'filebeat-{}.yml'.format(version),
+        FILEBEAT_CONFIG
+        )
     cfg_new_hash = file_hash(FILEBEAT_CONFIG)
 
     # Ensure ssl files match config each time we render a new template
