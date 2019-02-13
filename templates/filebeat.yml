@@ -1,7 +1,7 @@
 # WARNING! This file is managed by Juju. Edits will not persist.
 # Edit at your own risk
 filebeat:
-  prospectors:
+  inputs:
     -
       paths:
         {% for path in logpath -%}
@@ -44,6 +44,10 @@ filebeat:
       multiline.match: after
       fields:
         type: kube-logs
+      processors:
+      - add_kubernetes_metadata:
+          in_cluster: false
+          kube_config: /home/ubuntu/config
     {% endif %}
   registry_file: /var/lib/filebeat/registry
 
