@@ -1,61 +1,58 @@
 # WARNING! This file is managed by Juju. Edits will not persist.
 # Edit at your own risk
 filebeat:
+  registry_file: /var/lib/filebeat/registry
   inputs:
-    -
+    - type: log
       paths:
         {% for path in logpath -%}
         - {{ path }}
-        {% endfor %}
-      input_type: log
+        {%- endfor %}
+      symlinks: false
       exclude_files: {{ exclude_files }}
       exclude_lines: {{ exclude_lines }}
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
+      fields_under_root: false
       fields:
+        type: logpath-logs
         juju_model_name: {{ juju_model_name }}
         juju_model_uuid: {{ juju_model_uuid }}
         juju_principal_unit: {{ juju_principal_unit }}
         {% if fields -%}
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
-        {% endfor %}
+        {%- endfor %}
         {%- endif %}
     {% if kube_logs -%}
-    -
-      paths:
-        - /var/log/containers/*.log
-      exclude_files: ["filebeat.*log"]
+    - type: docker
+      containers.ids:
+      - "*"
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
-      fields_under_root: true
-      symlinks: true
-      # NB: disable json decoding; setting any of these would result in the
-      # top 'message' key being removed, thereby breaking things like the
-      # graylog beats input. Consumers will need to do their own json decoding
-      # for now.
-      # - https://github.com/juju-solutions/layer-filebeat/issues/44
-      #json.message_key: log
-      #json.keys_under_root: true
-      #json.add_error_key: true
-      multiline.pattern: '^\s'
-      multiline.match: after
+      #multiline.pattern: '^{'
+      #multiline.negate: true
+      #multiline.match: after
+      fields_under_root: false
       fields:
-        type: kube-logs
+        type: container-logs
+        juju_model_name: {{ juju_model_name }}
+        juju_model_uuid: {{ juju_model_uuid }}
+        juju_principal_unit: {{ juju_principal_unit }}
       processors:
       - add_kubernetes_metadata:
           in_cluster: false
-          kube_config: /home/ubuntu/config
-    {% endif %}
-  registry_file: /var/lib/filebeat/registry
+          kube_config: /root/.kube/config
+    {%- endif %}
 
 logging:
   {% if logging_to_syslog -%}
   to_syslog: true
   {%- endif %}
   metrics.enabled: false
+  level: debug
 
 output:
 {% if logstash or logstash_hosts %}
