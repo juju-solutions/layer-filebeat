@@ -1,36 +1,36 @@
 options:
   install_sources:
     type: string
-    default: deb https://artifacts.elastic.co/packages/6.x/apt stable main
-    description: apt repository to fetch beats from
+    default: "deb https://artifacts.elastic.co/packages/6.x/apt stable main"
+    description: "Elastic Beats apt repository"
   install_keys:
     type: string
     default: D88E42B4
-    description: repository key
+    description: "Elastic Beats apt repository key"
   logpath:
     type: string
     default: "/var/log/*.log /var/log/*/*.log"
     description: "Space separated log paths to monitor. Can contain wildcards."
   logging_to_syslog:
     type: boolean
-    description: "Send filebeat logs to syslog https://www.elastic.co/guide/en/beats/filebeat/master/configuration-logging.html#_literal_to_syslog_literal"
     default: true
+    description: "Send filebeat logs to syslog: https://www.elastic.co/guide/en/beats/filebeat/6.7/configuration-logging.html#_literal_logging_to_syslog_literal"
   harvester_buffer_size:
     type: int
     default: 16384
-    description: Defines the buffer size every harvester uses when fetching the file
+    description: "Defines the buffer size every harvester uses when fetching the file"
   max_bytes:
     type: int
     default: 10485760
-    description: Maximum number of bytes a single log event can have. Default 10MB
+    description: "Maximum number of bytes a single log event can have. Default 10MB"
   exclude_files:
     type: string
-    default: '[".gz$"]'
-    description: A list of regular expressions to match the files that you want Filebeat to ignore. https://www.elastic.co/guide/en/beats/filebeat/5.3/configuration-filebeat-options.html#exclude-files
+    default: '["/filebeat.*", ".*gz$"]'
+    description: "A list of regular expressions to match the files that you want Filebeat to ignore: https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-files"
   exclude_lines:
     type: string
     default: "[]"
-    description: A list of regular expressions to match the lines that you want Filebeat to exclude. https://www.elastic.co/guide/en/beats/filebeat/5.3/configuration-filebeat-options.html#exclude-lines
+    description: "A list of regular expressions to match the lines that you want Filebeat to exclude: https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-lines"
   fields:
     type: string
     default: ""
@@ -38,4 +38,4 @@ options:
   kube_logs:
     type: boolean
     default: false
-    description: "Add a prospector to ship logs from Kubernetes pods"
+    description: "Add a processor to ship logs from Kubernetes containers: https://www.elastic.co/guide/en/beats/filebeat/6.7/add-kubernetes-metadata.html"
