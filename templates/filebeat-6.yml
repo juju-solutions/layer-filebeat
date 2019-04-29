@@ -7,7 +7,7 @@ filebeat:
       paths:
         {% for path in logpath -%}
         - {{ path }}
-        {%- endfor %}
+        {% endfor %}
       symlinks: false
       exclude_files: {{ exclude_files }}
       exclude_lines: {{ exclude_lines }}
@@ -23,7 +23,7 @@ filebeat:
         {% if fields -%}
         {% for fieldvalue in fields -%}
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
-        {%- endfor %}
+        {% endfor %}
         {%- endif %}
     {% if kube_logs -%}
     - type: docker
@@ -51,8 +51,8 @@ logging:
   {% if logging_to_syslog -%}
   to_syslog: true
   {%- endif %}
+  level: {{ log_level }}
   metrics.enabled: false
-  level: debug
 
 output:
 {% if logstash or logstash_hosts %}

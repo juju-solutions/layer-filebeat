@@ -11,10 +11,6 @@ options:
     type: string
     default: "/var/log/*.log /var/log/*/*.log"
     description: "Space separated log paths to monitor. Can contain wildcards."
-  logging_to_syslog:
-    type: boolean
-    default: true
-    description: "Send filebeat logs to syslog: https://www.elastic.co/guide/en/beats/filebeat/6.7/configuration-logging.html#_literal_logging_to_syslog_literal"
   harvester_buffer_size:
     type: int
     default: 16384

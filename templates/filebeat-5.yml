@@ -51,6 +51,7 @@ logging:
   {% if logging_to_syslog -%}
   to_syslog: true
   {%- endif %}
+  level: {{ log_level }}
   metrics.enabled: false
 
 output:
