@@ -22,11 +22,15 @@ options:
   exclude_files:
     type: string
     default: '["/filebeat.*", ".*gz$"]'
-    description: "A list of regular expressions to match the files that you want Filebeat to ignore: https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-files"
+    description: |
+      A list of regular expressions to match the files that you want Filebeat to ignore:
+      https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-files"
   exclude_lines:
     type: string
     default: "[]"
-    description: "A list of regular expressions to match the lines that you want Filebeat to exclude: https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-lines"
+    description: |
+      A list of regular expressions to match the lines that you want Filebeat to exclude:
+      https://www.elastic.co/guide/en/beats/filebeat/6.7/filebeat-input-log.html#filebeat-input-log-exclude-lines"
   fields:
     type: string
     default: ""
@@ -34,4 +38,6 @@ options:
   kube_logs:
     type: boolean
     default: false
-    description: "Add a processor to ship logs from Kubernetes containers: https://www.elastic.co/guide/en/beats/filebeat/6.7/add-kubernetes-metadata.html"
+    description: |
+      Whether or not to include Kubernetes metadata if containers are found on the system:
+      https://www.elastic.co/guide/en/beats/filebeat/6.7/add-kubernetes-metadata.html

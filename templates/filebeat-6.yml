@@ -25,26 +25,33 @@ filebeat:
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}
         {%- endif %}
-    {% if kube_logs -%}
+    {% if has_docker -%}
     - type: docker
-      containers.ids:
-      - "*"
+      containers.ids: '*'
+      containers.path: '/var/lib/docker/containers'
+      symlinks: false
+      exclude_files: {{ exclude_files }}
+      exclude_lines: {{ exclude_lines }}
       scan_frequency: 10s
       harvester_buffer_size: {{ harvester_buffer_size }}
       max_bytes: {{ max_bytes }}
-      #multiline.pattern: '^{'
-      #multiline.negate: true
-      #multiline.match: after
       fields_under_root: false
       fields:
         type: container-logs
         juju_model_name: {{ juju_model_name }}
         juju_model_uuid: {{ juju_model_uuid }}
         juju_principal_unit: {{ juju_principal_unit }}
+        {% if fields -%}
+        {% for fieldvalue in fields -%}
+        {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
+        {% endfor %}
+        {%- endif %}
+      {% if kube_logs -%}
       processors:
       - add_kubernetes_metadata:
           in_cluster: false
           kube_config: /root/.kube/config
+      {%- endif %}
     {%- endif %}
 
 logging:
