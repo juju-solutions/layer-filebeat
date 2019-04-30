@@ -5,8 +5,7 @@ next-generation Logstash Forwarder, Filebeat tails logs and quickly sends this
 information to Logstash for further parsing and enrichment or to Elasticsearch
 for centralized storage and analysis.
 
-
-# Usage
+## Usage
 
 Filebeat can be added to any principal charm thanks to the wonders of being
 a subordinate charm. The following example will deploy an ubuntu log source
@@ -18,7 +17,7 @@ along with the elk stack so we can visualize our log data.
     juju add-relation filebeat:beats-host ubuntu
     juju add-relation filebeat logstash
 
-## Deploying the minimal Beats formation
+### Deploying the minimal Beats formation
 
 If you do not need log buffering and alternate transforms on data that is
 being shipped to ElasticSearch, you can simply deploy the 'beats-core' bundle
@@ -30,13 +29,13 @@ subordinate applications.
     juju add-relation filebeat:beats-host ubuntu
     juju add-relation topbeat:beats-host ubuntu
 
-## Changing what is shipped
+### Changing what is shipped
 
-By default, the Filebeat charm is setup to ship everything in:
+By default, the Filebeat charm will ship any container logs present in
+`/var/lib/docker/containers` as well as everything in:
 
     /var/log/*/*.log
     /var/log/*.log
-<!-- /* -->
 
 If you'd rather target specific log files:
 
@@ -80,8 +79,7 @@ run on each filebeat unit:
 The `reinstall` action will stop the filebeat service, purge the apt package,
 and reinstall the latest version available from the configured repository.
 
-
-# Scale Out Usage
+## Scale Out Usage
 
 As a subordinate charm, filebeat will scale when additional principal units are
 added. For example, adding `ubuntu` units that are related to `filebeat` will
@@ -93,13 +91,10 @@ To monitor additional applications, simply relate the filebeat subordinate:
 
     juju add-relation filebeat:beats-host my-charm
 
-
-# Contact Information
+## Contact Information
 
 - <elasticsearch-charmers@lists.launchpad.net>
 
+## Community / Help
 
-# Need Help?
-
-- [Juju mailing list](https://lists.ubuntu.com/mailman/listinfo/juju)
-- [Juju Community](https://jujucharms.com/community)
+- [Juju Discourse](https://discourse.jujucharms.com/)
