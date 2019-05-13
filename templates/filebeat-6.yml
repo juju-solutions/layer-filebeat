@@ -8,6 +8,9 @@ filebeat:
         {% for path in logpath -%}
         - {{ path }}
         {% endfor %}
+        {% if kube_logs -%}
+        - /root/cdk/audit/*.log
+        {%- endif %}
       symlinks: false
       exclude_files: {{ exclude_files }}
       exclude_lines: {{ exclude_lines }}

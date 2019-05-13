@@ -39,5 +39,6 @@ options:
     type: boolean
     default: false
     description: |
-      Whether or not to include Kubernetes metadata if containers are found on the system:
+      Whether or not to include the Kubernetes audit log as well as any K8s metadata
+      when container logs are present on the system:
       https://www.elastic.co/guide/en/beats/filebeat/6.7/add-kubernetes-metadata.html
