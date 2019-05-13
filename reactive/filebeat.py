@@ -27,6 +27,7 @@ import time
 
 
 FILEBEAT_CONFIG = '/etc/filebeat/filebeat.yml'
+KUBE_CONFIG = '/root/.kube/config'
 LOGSTASH_SSL_CERT = '/etc/ssl/certs/filebeat-logstash.crt'
 LOGSTASH_SSL_KEY = '/etc/ssl/private/filebeat-logstash.key'
 
@@ -55,6 +56,17 @@ def blocked_until_reinstall():
     LOGSTASH_SSL_KEY: ['filebeat'],
     })
 def render_filebeat_template():
+    """Create the filebeat.yaml config file.
+
+    Renders the appropriate template for the major version of filebeat that
+    is installed.
+    """
+    # kube_logs requires access to k8s-related filesystem data. If configured,
+    # don't try to start filebeat until that data is present.
+    if config().get('kube_logs') and not os.path.exists(KUBE_CONFIG):
+        status.maint('Waiting for: {}'.format(KUBE_CONFIG))
+        return
+
     version = charms.apt.get_package_version('filebeat')[0]
     cfg_original_hash = file_hash(FILEBEAT_CONFIG)
     connections = render_without_context(
@@ -72,7 +84,8 @@ def render_filebeat_template():
             service('restart', 'filebeat')
         status.active('Filebeat ready.')
     else:
-        # NB: beat base layer will handle waiting status when not connected
+        # Stop the service when not connected to any log handlers.
+        # NB: beat base layer will handle setting a waiting status
         service('stop', 'filebeat')
 
 
