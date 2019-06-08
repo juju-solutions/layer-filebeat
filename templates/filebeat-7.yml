@@ -2,7 +2,7 @@
 # Edit at your own risk
 filebeat:
   registry_file: /var/lib/filebeat/registry
-  prospectors:
+  inputs:
     - type: log
       paths:
         {% for path in logpath -%}

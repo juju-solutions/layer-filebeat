@@ -67,7 +67,9 @@ def render_filebeat_template():
         status.maint('Waiting for: {}'.format(KUBE_CONFIG))
         return
 
-    version = charms.apt.get_package_version('filebeat')[0]
+    # The v5 template is compatible with all versions < 6
+    major = charms.apt.get_package_version('filebeat')[0]
+    version = major if major.isdigit() and int(major) > 5 else "5"
     cfg_original_hash = file_hash(FILEBEAT_CONFIG)
     connections = render_without_context(
         'filebeat-{}.yml'.format(version),
