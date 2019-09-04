@@ -56,6 +56,9 @@ filebeat:
           kube_config: /root/.kube/config
       {%- endif %}
     {%- endif %}
+    {% if extra_inputs -%}
+    {{ extra_inputs|indent(4) }}
+    {% endif %}
 
 logging:
   {% if logging_to_syslog -%}

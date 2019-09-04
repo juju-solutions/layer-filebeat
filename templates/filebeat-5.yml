@@ -49,6 +49,9 @@ filebeat:
       fields:
         type: kube-logs
     {% endif %}
+    {% if extra_inputs -%}
+    {{ extra_inputs|indent(4) }}
+    {% endif %}
   registry_file: /var/lib/filebeat/registry
 
 logging:
