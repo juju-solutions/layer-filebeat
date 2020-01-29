@@ -9,7 +9,7 @@ from charms.reactive.helpers import data_changed
 from charms.templating.jinja2 import render
 
 from charmhelpers.core import unitdata
-from charmhelpers.core.hookenv import config
+from charmhelpers.core.hookenv import config, log
 from charmhelpers.core.host import restart_on_change, service_stop
 from charmhelpers.core.host import file_hash, service
 
@@ -61,11 +61,15 @@ def render_filebeat_template():
     Renders the appropriate template for the major version of filebeat that
     is installed.
     """
-    # kube_logs requires access to k8s-related filesystem data. If configured,
-    # don't try to start filebeat until that data is present.
-    if config().get('kube_logs') and not os.path.exists(KUBE_CONFIG):
-        status.maint('Waiting for: {}'.format(KUBE_CONFIG))
-        return
+    # kube_logs requires access to a kubeconfig. If configured, log whether or
+    # not we have enough to start collecting k8s metadata.
+    if config().get('kube_logs'):
+        if os.path.exists(KUBE_CONFIG):
+            msg = 'Collecting k8s metadata.'
+        else:
+            msg = ('kube_logs=True, but {} does not exist. '
+                   'No k8s metadata will be collected.'.format(KUBE_CONFIG))
+        log(msg)
 
     # The v5 template is compatible with all versions < 6
     major = charms.apt.get_package_version('filebeat')[0]

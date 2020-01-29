@@ -8,7 +8,7 @@ filebeat:
         {% for path in logpath -%}
         - {{ path }}
         {% endfor %}
-        {% if kube_logs -%}
+        {% if has_k8s -%}
         - /root/cdk/audit/*.log
         {%- endif %}
       symlinks: false
@@ -50,7 +50,7 @@ filebeat:
         {{ fieldvalue.split(':')[0] }}: {{ fieldvalue.split(':')[-1] }}
         {% endfor %}
         {%- endif %}
-      {% if kube_logs -%}
+      {% if has_k8s -%}
       processors:
       - add_kubernetes_metadata:
           in_cluster: false
