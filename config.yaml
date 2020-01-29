@@ -42,6 +42,8 @@ options:
       Whether or not to include the Kubernetes audit log as well as any K8s metadata
       when container logs are present on the system:
       https://www.elastic.co/guide/en/beats/filebeat/6.7/add-kubernetes-metadata.html
+
+      Note: this option has no effect when related to a non Charmed Kubernetes charm.
   extra_inputs:
     type: string
     default: ""
